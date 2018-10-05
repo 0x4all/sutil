@@ -1,4 +1,5 @@
 var fs = require("fs");
+var crypto = require("crypto");
 var sutil = {};
 module.exports = sutil;
 
@@ -78,3 +79,27 @@ sutil.crossdomain = function(app) {
         next();
     });
 }
+
+sutil.md5 = function(content) {
+    var c = crypto.createHmac("md5");
+    c.update(content);
+    return c.digest('hex');
+};
+    
+/**
+ * to base64
+ * @param {String} content 
+ */
+sutil.base64t = function(content){
+	return new Buffer(content).toString('base64');
+}
+
+/**
+ * from base64
+ * @param {String} content 
+ */
+sutil.base64f = function(content){
+	return new Buffer(content, 'base64').toString();
+}
+
+    
