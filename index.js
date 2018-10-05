@@ -81,10 +81,11 @@ sutil.crossdomain = function(app) {
 }
 
 sutil.md5 = function(content) {
-    var c = crypto.createHmac("md5");
+    var c = crypto.createHash("md5");
     c.update(content);
     return c.digest('hex');
 };
+
     
 /**
  * to base64
