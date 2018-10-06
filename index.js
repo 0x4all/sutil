@@ -1,4 +1,5 @@
 var fs = require("fs");
+var path = require("path");
 var crypto = require("crypto");
 var sutil = {};
 module.exports = sutil;
@@ -104,3 +105,43 @@ sutil.base64f = function(content){
 }
 
     
+sutil.safecall = function(cb){
+    if (typeof cb === 'function') {
+        var len = arguments.length;
+        if(len == 1) {
+            return cb();
+        }
+    
+        if(len == 2) {
+            return cb(arguments[1]);
+        }
+    
+        if(len == 3) {
+            return cb(arguments[1], arguments[2]);
+        }
+    
+        if(len == 4) {
+            return cb(arguments[1], arguments[2], arguments[3]);
+        }
+    
+        var args = Array(len - 1);
+        for (i = 1; i < len; i++){
+            args[i - 1] = arguments[i];
+        }
+        cb.apply(null, args);
+    }
+};
+
+var _rootdir = process.cwd();
+sutil.rootdir = function(rootdir) {
+    _rootdir = rootdir;
+    return sutil;
+}
+/**
+ * 从_rootdir开始计算路径进行require，一般用于配置类文件
+ * @param {String} filepath 以根目录为基础的相对目录
+ */
+sutil.require = function(filepath){
+    var p = path.resolve(_rootdir, filepath);
+    return require(p);
+}
