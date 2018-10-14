@@ -185,3 +185,40 @@ sutil.parsetoken = function(token, pwd) {
 	}
 	return ts;
 };
+
+sutil.padding = function(str, len ,padchar){
+    if(!str) {
+        str='';
+    }
+    str = str.toString();
+    if(!padchar) {
+        padchar='0';
+    }
+    if(!len){
+        len = str.length;
+    }
+    var left = len - str.length;
+    for(var i =0; i < left; ++i){
+        str = padchar + str;
+    }
+    return str;
+}
+
+var basetime = new Date("2018/01/01").getTime();
+/**
+ * 
+ * @param {Date} date 
+ */
+sutil.basedate = function(date){
+    basetime = date.getTime();
+}
+/**
+ * 自[basedate](默认2018/01/01)日以来的毫秒数
+ */
+sutil.timenow = function(){
+    return Date.now() - basetime;
+}
+
+sutil.basetime = function(){
+    return basetime;
+}
