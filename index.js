@@ -223,8 +223,5 @@ sutil.basetime = function(){
     return basetime;
 };
 
-var bitset = require("./bitset");
+sutil.bitset = require("./bitset");
 
-sutil.bitset = function(){
-    return new bitset();
-};

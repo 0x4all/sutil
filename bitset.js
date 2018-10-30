@@ -28,8 +28,13 @@ bitset.prototype.val = function(){
     return this.bits;
 };
 
-
-bitset.prototype.setx = function(bits, pos, b) {
+/**
+ * 
+ * @param {number} bits 
+ * @param {number} pos 
+ * @param {boolean} b
+ */
+bitset.setx = function(bits, pos, b) {
     if(pos>=0 && pos < MAXLEN) {
         if(b) {
             bits |= 1<<pos;
@@ -40,7 +45,11 @@ bitset.prototype.setx = function(bits, pos, b) {
     }
     return bits;
 }
-
-bitset.prototype.testx = function(bits, pos) {
+/**
+ * 
+ * @param {number} bits 
+ * @param {number} pos 
+ */
+bitset.testx = function(bits, pos) {
     return (bits & (1<<pos)) > 0;
 };
