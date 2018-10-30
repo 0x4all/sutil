@@ -202,7 +202,7 @@ sutil.padding = function(str, len ,padchar){
         str = padchar + str;
     }
     return str;
-}
+};
 
 var basetime = new Date("2018/01/01").getTime();
 /**
@@ -211,14 +211,20 @@ var basetime = new Date("2018/01/01").getTime();
  */
 sutil.basedate = function(date){
     basetime = date.getTime();
-}
+};
 /**
  * 自[basedate](默认2018/01/01)日以来的毫秒数
  */
 sutil.timenow = function(){
     return Date.now() - basetime;
-}
+};
 
 sutil.basetime = function(){
     return basetime;
-}
+};
+
+var bitset = require("./bitset");
+
+sutil.bitset = function(){
+    return new bitset();
+};
