@@ -132,6 +132,14 @@ sutil.safecall = function(cb){
     }
 };
 
+sutil.returnerror = function(err ,callback){
+    if(err) {
+        sutil.safecall(callback, err);
+        return true;
+    }
+    return false;
+}
+
 var _rootdir = process.cwd();
 sutil.rootdir = function(rootdir) {
     _rootdir = rootdir;
